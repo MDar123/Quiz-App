@@ -1,0 +1,37 @@
+<div class="container">
+
+<div class="card mt-4">
+
+<div class="card-header d-flex justify-content-between pb-3">
+    <div class="col-4"><i class="fa-solid fa-print"></i></div>
+    <div class="col-4 blockquote">Angular Test</div>
+    <div class="col-4">User :{{user}} </div>
+</div>
+
+<div class="card-body d-flex justify-content-between pb-3">
+<div class="col-4"><i class="fa-solid fa-rotate-right" ></i></div>
+<div class="col-4"><h3>Question <span class="text-info">{{questionCount+1 }} </span>of<span class="text-info"> 10</span></h3></div>
+<div class="col-4"><h3 class="text-danger d-inline">Time </h3> <h3 class="text-warn d-inline m-2">: {{counter}} sec</h3><i class="fa-solid fa-clock fs-1"></i></div>
+</div>
+</div>
+<div class="card mt-4 mb-4">
+<div class="card-header blockquote">{{questionArray[questionCount].questionLabel}}</div>
+<div class="card-body">
+<div class="card option gray-border font-weight-bold p-2 m-3 " *ngFor="let option of questionArray[questionCount]?.options" (click)="onSelect(questionArray[questionCount],questionArray[questionCount].options,option)" [ngClass]="option.isSelected?'bg-success text-white' : '' "> {{ option.label | titlecase}}</div> 
+</div>
+<div class="card-footer d-flex justify-content-between">
+<button class="btn btn-primary" [disabled]="questionCount==0" (click)="previousBtn()"><i class="fa-solid fa-arrow-left"></i></button>
+<button class="btn btn-primary" [disabled]="questionCount==9" (click)="nextBtn()"><i class="fa-solid fa-arrow-right"></i></button>
+<div class="btn btn-primary" *ngIf="questionCount==9" (click)="result()">See Result</div>
+</div>
+</div>
+<div class="card">
+<div class="row  m-4">
+    <div class="col-12 text-center">
+        <div class="questionDiv " *ngFor="let q of questionArray; let i=index" [ngClass]="q.isAttempted?'attempted':'left'">
+         {{i+1}}
+        </div>
+    </div>
+    </div>
+</div>
+</div>
