@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import {interval} from 'rxjs'
 import { DataService } from '../data.service';
-import {ToastrService} from 'ngx-toastr';
 @Component({
   selector: 'app-test',
   standalone: true,
@@ -17,8 +16,7 @@ const username:any = localStorage.getItem('username');
 this.user = username;
 setTimeout((timer:any) =>{
   this.questioninterval$.unsubscribe();
-  this.route.navigateByUrl('/result');
-this.toaster.success('Congratulations ! You have completed your Quiz');  
+  this.route.navigateByUrl('/result'); 
   } , 500000);
 this.clock();
 }
@@ -40,7 +38,7 @@ SelectedAnswer:any;
 points:number=0;
 AttemptedQuestions:number=0;
 //  ---end---
-  constructor(private route:Router , private service : DataService,private toaster : ToastrService) {
+  constructor(private route:Router , private service : DataService) {
     this.questionArray = [
       {
         "questionLabel": "Which of the following is not a datatype in typescript",
@@ -150,12 +148,9 @@ console.log(this.questionCount)
 }
 else{
 alert('Your Test is Finshed');
-this.route.navigateByUrl('/result');
-this.toaster.success('Congratulations ! You have completed your Quiz')
-}
+this.route.navigateByUrl('/result');}
 if(this.questionCount > this.questionArray.length-1){
 this.route.navigateByUrl('/result');
-this.toaster.success('Congratulations ! You have completed your Quiz')
 }
 }
 
@@ -241,7 +236,6 @@ this.questionCount++
 console.log(this.questionCount)
 if(this.questionCount ==10){
   this.route.navigateByUrl('/result');
-  this.toaster.success('Congratulations ! You have completed your Quiz')
   }
 }
 
