@@ -231,6 +231,11 @@ this.service.showDataToResult(this.AttemptedQuestions,this.points);
 
 //  ---end---
 
+/* logout method  */
+logout(){
+localStorage.clear();
+this.route.navigate(['/'])
+}
 result(){
 this.questionCount++
 console.log(this.questionCount)
